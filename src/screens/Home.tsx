@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Bookmark, Image, RefreshCw, Search, Send, UserCircle, Users } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { foodPosts, friends } from '../data/mockData';
+import curryHero from '../../FoodImages/S__12189701.jpg';
 
 interface HomeProps {
   onGoToTower: () => void;
@@ -38,9 +39,9 @@ export function Home({ onGoToTower }: HomeProps) {
             <div className="relative overflow-hidden rounded-[25px] border border-[#5b2d13] bg-[#111214] p-3">
               <div className="relative h-[315px] overflow-hidden rounded-[19px] bg-[#1a1b1e]">
                 <img
-                  src={post.image}
+                  src={curryHero}
                   alt={post.food}
-                  className="absolute inset-0 h-full w-full scale-[1.28] object-contain opacity-95"
+                  className="absolute inset-0 h-full w-full object-cover opacity-95"
                 />
                 <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-[#2a2a2c]/85 py-1.5 pl-1.5 pr-4 backdrop-blur">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-[#3a3a3c] text-[#a9a9ad]">
