@@ -1,11 +1,20 @@
+import { useMemo } from 'react';
 import { Bell, Printer, UserCircle } from 'lucide-react';
-import { foodPosts, monthlySummary } from '../data/mockData';
+import { useAppContext } from '../context/AppContext';
+import type { FoodPost } from '../data/mockData';
 
 const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-const loggedDays = new Map(foodPosts.map((post) => [post.calendarDay, post]));
-const loggedSet = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 20, 22, 25]);
 
-function MonthGrid({ preview = false }: { preview?: boolean }) {
+function MonthGrid({ meals, preview = false }: { meals: FoodPost[]; preview?: boolean }) {
+  const loggedDays = useMemo(
+    () => new Map(meals.map((post) => [post.calendarDay, post])),
+    [meals],
+  );
+  const loggedSet = useMemo(
+    () => new Set(meals.map((post) => post.calendarDay)),
+    [meals],
+  );
+
   const days = Array.from({ length: 35 }, (_, index) => {
     const startOffset = preview ? 3 : 0;
     const day = index - startOffset + 1;
@@ -59,6 +68,8 @@ function MonthGrid({ preview = false }: { preview?: boolean }) {
 }
 
 export function CalendarView() {
+  const { meals, totalMealsCount } = useAppContext();
+
   return (
     <div className="h-full overflow-y-auto bg-background pb-32 text-white no-scrollbar">
       <header className="relative px-6 pt-8">
@@ -90,7 +101,7 @@ export function CalendarView() {
             <div className="soft-panel rounded-[14px] p-4">
               <p className="mono-label text-[9px] text-[#bdbdc2]">MEALS LOGGED</p>
               <div className="mt-8 flex items-end gap-1.5">
-                <span className="text-[34px] font-black leading-none">{monthlySummary.mealsLogged}</span>
+                <span className="text-[34px] font-black leading-none">{totalMealsCount}</span>
                 <span className="text-[18px] font-bold text-primary">/31</span>
               </div>
             </div>
@@ -103,7 +114,7 @@ export function CalendarView() {
             </div>
           </div>
 
-          <MonthGrid />
+          <MonthGrid meals={meals} />
         </section>
 
         <section className="mt-9">
@@ -112,7 +123,7 @@ export function CalendarView() {
             2023 PREVIEW
           </p>
           <div className="mt-5 opacity-70">
-            <MonthGrid preview />
+            <MonthGrid meals={[]} preview />
           </div>
         </section>
       </main>

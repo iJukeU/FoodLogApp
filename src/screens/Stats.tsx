@@ -1,5 +1,6 @@
-import { Activity, AlertTriangle, BarChart3, Leaf, Scale, ShieldCheck, Sparkles } from 'lucide-react';
+import { AlertTriangle, BarChart3, Leaf, Scale, ShieldCheck, Sparkles } from 'lucide-react';
 import { foodPosts, monthlySummary } from '../data/mockData';
+import { useAppContext } from '../context/AppContext';
 
 const text = {
   subtitle: '\u5854\u7684\u71df\u990a\u7d44\u6210\u5206\u6790',
@@ -38,11 +39,14 @@ const purificationItems = [
 ];
 
 export function Stats() {
-  const currentTower = monthlySummary.towerHeight;
+  const { towerHeight, towerLevel, totalMealsCount, meals } = useAppContext();
   const previousTower = 9;
-  const towerDelta = currentTower - previousTower;
-  const avgCaloriesPerLayer = Math.round(monthlySummary.totalCalories / 88);
-  const featuredFoods = foodPosts.slice(0, 6);
+  const towerDelta = towerHeight - previousTower;
+  const avgCaloriesPerLayer = towerHeight > 0
+    ? Math.round(monthlySummary.totalCalories / towerHeight)
+    : 0;
+  const featuredFoods = meals.slice(0, 6);
+  const diversityCount = new Set(meals.map((m) => m.category)).size;
 
   return (
     <div className="h-full overflow-y-auto bg-background pb-36 text-white no-scrollbar">
@@ -61,7 +65,7 @@ export function Stats() {
               <p className="mt-1 text-xs font-semibold text-[#8f9096]">{text.weeklyTypes}</p>
             </div>
             <div className="rounded-2xl bg-white px-4 py-3 text-black">
-              <span className="text-[30px] font-black leading-none">{monthlySummary.diversity}</span>
+              <span className="text-[30px] font-black leading-none">{diversityCount}</span>
               <span className="ml-1 text-xs font-black text-[#8b8c91]">types</span>
             </div>
           </div>
@@ -130,7 +134,7 @@ export function Stats() {
             <h2 className="mt-2 text-[20px] font-black">{text.towerRecord}</h2>
             <div className="mt-5 flex items-end justify-around">
               <TowerBar label={text.lastMonth} value={previousTower} height={72} dim />
-              <TowerBar label={text.thisMonth} value={currentTower} height={104} />
+              <TowerBar label={text.thisMonth} value={towerHeight} height={104} />
             </div>
             <p className="mt-4 text-center font-mono text-xs font-black text-primary">
               +{towerDelta} layers vs last month

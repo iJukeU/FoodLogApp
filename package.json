@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "clean": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\"",
     "lint": "tsc --noEmit",
-    "server": "uvicorn main:app --app-dir server --port 3001 --reload",
+    "server": "python -m uvicorn main:app --app-dir server --port 3001 --reload",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {

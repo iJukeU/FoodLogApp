@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Bookmark, Image, RefreshCw, Search, Send, UserCircle, Users } from 'lucide-react';
+import { Bookmark, Image, Loader2, RefreshCw, Search, Send, UserCircle, Users } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { foodPosts, friends } from '../data/mockData';
+import { friends } from '../data/mockData';
+import { useAppContext } from '../context/AppContext';
 import curryHero from '../../FoodImages/S__12189701.jpg';
 
 interface HomeProps {
@@ -11,14 +12,26 @@ interface HomeProps {
 const reactions = ['\uD83E\uDD5A', '\uD83C\uDF54', '\uD83C\uDF55', '\uD83C\uDF2E', '\uD83E\uDD24'];
 
 export function Home({ onGoToTower }: HomeProps) {
+  const { meals, isPublishing, publishMeal } = useAppContext();
   const [showSendModal, setShowSendModal] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState(friends[0].id);
   const [captureBurst, setCaptureBurst] = useState(false);
-  const post = foodPosts[0];
+  const post = meals[0];
 
   const captureMeal = () => {
+    // 保留原有的 burst 動畫
     setCaptureBurst(true);
     window.setTimeout(() => setCaptureBurst(false), 1100);
+
+    // 呼叫 API 發布食物紀錄（Dummy Data）
+    publishMeal({
+      user_id: 1,
+      group_id: 1,
+      photo_url: 'https://placehold.co/600x400/png',
+      caption: '按鈕實測：今天吃這個！',
+    }).catch(() => {
+      // publishMeal 內部已 console.error，這裡靜默處理
+    });
   };
 
   return (
@@ -88,10 +101,15 @@ export function Home({ onGoToTower }: HomeProps) {
             </button>
             <button
               onClick={captureMeal}
-              className="flex h-[76px] w-[76px] items-center justify-center rounded-full border-[4px] border-primary bg-background p-2.5"
+              disabled={isPublishing}
+              className={`flex h-[76px] w-[76px] items-center justify-center rounded-full border-[4px] border-primary bg-background p-2.5 transition-opacity ${isPublishing ? 'opacity-50' : ''}`}
               aria-label="Capture"
             >
-              <span className="h-full w-full rounded-full bg-primary" />
+              {isPublishing ? (
+                <Loader2 size={32} className="animate-spin text-primary" />
+              ) : (
+                <span className="h-full w-full rounded-full bg-primary" />
+              )}
             </button>
             <button className="flex h-[56px] w-[56px] items-center justify-center rounded-full border border-white/8 bg-[#1a1b1e] text-[#8b8c91]">
               <RefreshCw size={22} />

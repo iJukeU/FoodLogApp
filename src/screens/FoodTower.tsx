@@ -1,14 +1,15 @@
 import { useMemo, useState } from 'react';
 import { UserCircle } from 'lucide-react';
-import { foodPosts, monthlySummary } from '../data/mockData';
+import { useAppContext } from '../context/AppContext';
 
 type TowerMode = 'personal' | 'group';
 
 export function FoodTower({ onBack: _onBack }: { onBack?: () => void }) {
+  const { meals, towerHeight, towerLevel } = useAppContext();
   const [mode, setMode] = useState<TowerMode>('personal');
   const towerItems = useMemo(
-    () => (mode === 'personal' ? foodPosts.slice(0, 9) : foodPosts.slice(0, 10)),
-    [mode],
+    () => (mode === 'personal' ? meals.slice(0, 9) : meals.slice(0, 10)),
+    [mode, meals],
   );
 
   return (
@@ -21,11 +22,12 @@ export function FoodTower({ onBack: _onBack }: { onBack?: () => void }) {
       </header>
 
       <section className="mt-16 text-center">
-        <p className="text-base font-bold text-[#8d8d92]">{'\u9ad8\u5ea6'}</p>
+        <p className="text-base font-bold text-[#8d8d92]">{'高度'}</p>
         <div className="mt-2 flex items-end justify-center gap-2 text-primary">
-          <span className="text-[56px] font-light leading-none">{monthlySummary.towerHeight}</span>
-          <span className="mb-2 text-[25px] font-bold">{'\u500b'}</span>
+          <span className="text-[56px] font-light leading-none">{towerHeight}</span>
+          <span className="mb-2 text-[25px] font-bold">{'個'}</span>
         </div>
+        <p className="mt-1 font-mono text-xs font-black text-[#8d8d92]">LEVEL {towerLevel}</p>
       </section>
 
       <section className="mx-auto mt-14 grid w-[310px] grid-cols-2 rounded-full bg-[#1a1b1e] p-2">

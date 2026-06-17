@@ -1,3 +1,13 @@
+-- ============================================================
+-- FoodLog App — Database Schema
+-- ============================================================
+
+CREATE DATABASE IF NOT EXISTS `foodlog`
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_unicode_ci;
+
+USE `foodlog`;
+
 -- 1. 使用者資料表
 CREATE TABLE `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
