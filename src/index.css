@@ -48,6 +48,39 @@
   }
 }
 
+/* ── Food Map (Leaflet) ───────────────────────────────── */
+.leaflet-container {
+  background-color: var(--color-background);
+  font-family: var(--font-sans);
+}
+
+.food-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(23, 24, 27, 0.92);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.food-marker img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.food-marker--selected {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.25), 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
 /* Hide scrollbar for clean mobile look */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

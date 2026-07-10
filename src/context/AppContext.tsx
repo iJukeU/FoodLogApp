@@ -96,6 +96,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
           category: '其他',
           image: data.meal.photo_url,
           icon: '🍽️',
+          // 後端 meals 尚未儲存座標，先以台北市中心附近的假座標讓紀錄能顯示在地圖上
+          latitude: 25.0418 + ((data.meal.id % 7) - 3) * 0.004,
+          longitude: 121.5359 + ((data.meal.id % 5) - 2) * 0.005,
+          address: '台北市',
+          timestamp: data.meal.created_at,
         };
         setMeals((prev) => [newPost, ...prev]);
 

@@ -1,1 +1,1 @@
-export type Screen = 'onboarding' | 'home' | 'food-tower' | 'calendar' | 'stats' | 'chat' | 'chat-detail';
+export type Screen = 'onboarding' | 'home' | 'map' | 'food-tower' | 'calendar' | 'stats' | 'chat' | 'chat-detail';

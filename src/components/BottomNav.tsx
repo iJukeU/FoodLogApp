@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
 import { motion } from 'motion/react';
-import { BarChart3, CalendarDays, Home, MessageSquare } from 'lucide-react';
+import { BarChart3, CalendarDays, Home, MapPin, MessageSquare } from 'lucide-react';
 import { Screen } from '../types';
 
 interface BottomNavProps {
@@ -11,6 +11,7 @@ interface BottomNavProps {
 export function BottomNav({ activeScreen, onChange }: BottomNavProps) {
   const navItems: { id: Screen; icon: ElementType; label: string }[] = [
     { id: 'home', icon: Home, label: 'Home' },
+    { id: 'map', icon: MapPin, label: 'Map' },
     { id: 'calendar', icon: CalendarDays, label: 'Calendar' },
     { id: 'stats', icon: BarChart3, label: 'Stats' },
     { id: 'chat', icon: MessageSquare, label: 'Chat' },

@@ -3,6 +3,7 @@ import { Screen } from './types';
 import { Onboarding } from './screens/Onboarding';
 import { Home } from './screens/Home';
 import { FoodTower } from './screens/FoodTower';
+import { MapScreen } from './screens/Map';
 import { CalendarView } from './screens/Calendar';
 import { Stats } from './screens/Stats';
 import { ChatList } from './screens/ChatList';
@@ -20,6 +21,8 @@ export default function App() {
         return <Home onGoToTower={() => setCurrentScreen('food-tower')} />;
       case 'food-tower':
         return <FoodTower onBack={() => setCurrentScreen('home')} />;
+      case 'map':
+        return <MapScreen />;
       case 'calendar':
         return <CalendarView />;
       case 'stats':

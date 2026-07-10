@@ -25,6 +25,13 @@ export type FoodPost = {
   category: string;
   image: string;
   icon: string;
+  /** 地圖標記座標（對應後端 meals 未來的 latitude/longitude 欄位） */
+  latitude: number;
+  longitude: number;
+  /** 地址描述，顯示在地圖資訊卡 */
+  address: string;
+  /** ISO 時間戳，Timeline Replay 依此排序播放 */
+  timestamp: string;
 };
 
 export const foodPosts: FoodPost[] = [
@@ -42,6 +49,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u5496\u54e9\u98ef',
     image: curryPan,
     icon: '🥚',
+    latitude: 25.033,
+    longitude: 121.543,
+    address: '台北市大安區忠孝東路四段',
+    timestamp: '2025-10-31T19:30:00',
   },
   {
     id: 2,
@@ -57,6 +68,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u6f22\u5821',
     image: burger,
     icon: '🍔',
+    latitude: 25.036,
+    longitude: 121.567,
+    address: '台北市信義區松壽路',
+    timestamp: '2025-10-30T12:40:00',
   },
   {
     id: 3,
@@ -72,6 +87,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u86cb\u6599\u7406',
     image: fries,
     icon: '🍟',
+    latitude: 25.0525,
+    longitude: 121.532,
+    address: '台北市中山區南京東路二段',
+    timestamp: '2025-10-29T08:20:00',
   },
   {
     id: 4,
@@ -87,6 +106,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u751c\u9ede',
     image: tart,
     icon: '🥧',
+    latitude: 25.0421,
+    longitude: 121.5079,
+    address: '台北市萬華區漢中街',
+    timestamp: '2025-10-28T15:10:00',
   },
   {
     id: 5,
@@ -102,6 +125,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u852c\u679c',
     image: tomato,
     icon: '🍅',
+    latitude: 25.0148,
+    longitude: 121.534,
+    address: '台北市中正區羅斯福路四段',
+    timestamp: '2025-10-27T12:05:00',
   },
   {
     id: 6,
@@ -117,6 +144,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u852c\u83dc',
     image: broccoli,
     icon: '🥦',
+    latitude: 25.0498,
+    longitude: 121.5776,
+    address: '台北市松山區南京東路五段',
+    timestamp: '2025-10-26T18:45:00',
   },
   {
     id: 7,
@@ -132,6 +163,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u70b8\u7269',
     image: nugget,
     icon: '🍗',
+    latitude: 25.0881,
+    longitude: 121.5254,
+    address: '台北市士林區文林路',
+    timestamp: '2025-10-25T20:30:00',
   },
   {
     id: 8,
@@ -147,6 +182,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u5496\u5561',
     image: coffee,
     icon: '☕',
+    latitude: 25.0466,
+    longitude: 121.5173,
+    address: '台北市中正區忠孝西路一段',
+    timestamp: '2025-10-24T09:15:00',
   },
   {
     id: 9,
@@ -162,6 +201,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u751c\u9ede',
     image: iceCream,
     icon: '🍦',
+    latitude: 25.0416,
+    longitude: 121.5546,
+    address: '台北市大安區敦化南路一段',
+    timestamp: '2025-10-23T16:20:00',
   },
   {
     id: 10,
@@ -177,6 +220,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u751c\u9ede',
     image: donut,
     icon: '🍩',
+    latitude: 25.058,
+    longitude: 121.5266,
+    address: '台北市中山區中山北路二段',
+    timestamp: '2025-10-22T22:10:00',
   },
   {
     id: 11,
@@ -192,6 +239,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u5bb5\u591c',
     image: hotDog,
     icon: '🌭',
+    latitude: 25.0554,
+    longitude: 121.5156,
+    address: '台北市大同區寧夏路夜市',
+    timestamp: '2025-10-21T23:40:00',
   },
   {
     id: 12,
@@ -207,6 +258,10 @@ export const foodPosts: FoodPost[] = [
     category: '\u70e4\u7269',
     image: skewer,
     icon: '🍢',
+    latitude: 25.0509,
+    longitude: 121.5772,
+    address: '台北市松山區饒河街夜市',
+    timestamp: '2025-10-20T21:00:00',
   },
 ];
 
